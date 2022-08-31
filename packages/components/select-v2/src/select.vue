@@ -25,6 +25,7 @@
       @before-show="handleMenuEnter"
       @hide="states.inputValue = states.displayInputValue"
     >
+      <!-- select主体 -->
       <template #default>
         <div
           ref="selectionRef"
@@ -285,6 +286,7 @@
           </span>
         </div>
       </template>
+      <!-- pop主体（虚拟列表入口） -->
       <template #content>
         <el-select-menu
           ref="menuRef"

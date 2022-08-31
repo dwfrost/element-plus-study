@@ -1,6 +1,15 @@
 <template>
   <div class="play-container">
-    <el-button v-if="!v2Show" @click="showV2">显示select-v2</el-button>
+    <div class="item">
+      <el-button @click="showV1"
+        >{{ v1Show ? '隐藏' : '显示' }}select-v1</el-button
+      >
+    </div>
+    <div class="item">
+      <el-button @click="showV2"
+        >{{ v2Show ? '隐藏' : '显示' }}select-v2</el-button
+      >
+    </div>
     <div class="item">
       数据量：
       <el-select v-model="total" @change="onChange">
@@ -13,7 +22,7 @@
       >条
     </div>
     <template v-if="show">
-      <div class="item">
+      <div v-if="v1Show" class="item">
         <SelectV1 :options="options" />
       </div>
       <div v-if="v2Show" class="item">
@@ -30,7 +39,7 @@ import SelectV2 from './SelectV2.vue'
 
 const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
-const total = ref(1000)
+const total = ref(10000)
 const totalOptions = [10, 100, 1000, 10000, 50000]
 const onChange = () => {
   show.value = false
@@ -56,7 +65,11 @@ onMounted(() => {
 
 const v2Show = ref(false)
 const showV2 = () => {
-  v2Show.value = true
+  v2Show.value = !v2Show.value
+}
+const v1Show = ref(false)
+const showV1 = () => {
+  v1Show.value = !v1Show.value
 }
 </script>
 
